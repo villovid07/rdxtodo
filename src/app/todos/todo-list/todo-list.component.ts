@@ -10,10 +10,15 @@ import { Store } from '@ngrx/store';
 })
 export class TodoListComponent {
   todos: Todo[] = [];
+  filtroActual: string = 'todos';
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.store.select('todos').subscribe((todos) => (this.todos = todos));
+    //Destructuring has been done hereto avoid state.something 
+    this.store.subscribe( ({todos, filtro}) =>{
+      this.todos = todos;
+      this.filtroActual= filtro;
+    })
   }
 }

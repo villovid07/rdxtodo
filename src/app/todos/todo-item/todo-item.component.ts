@@ -3,7 +3,7 @@ import { Todo } from '../models/todo.model';
 import { FormControl, Validators } from '@angular/forms';
 import { AppState } from 'src/app/app.reducer';
 import { Store } from '@ngrx/store';
-import { editar, toggle } from '../todo.actions';
+import { borrar, editar, toggle } from '../todo.actions';
 
 @Component({
   selector: 'app-todo-item',
@@ -49,5 +49,10 @@ export class TodoItemComponent {
     this.store.dispatch(
       editar({ id: this.todo.id, texto: this.txtInput.value })
     );
+  }
+
+  borrarItem(){
+    
+    this.store.dispatch(borrar({ id: this.todo.id }));
   }
 }
